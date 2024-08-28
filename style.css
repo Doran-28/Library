@@ -1,0 +1,17 @@
+
+
+.modal{
+    border: 1px solid black;
+    display: none;
+    margin: 1vh 20vw;
+    position: fixed;
+    background-color: white;
+}
+
+form{
+    padding: 2em
+}
+
+.close {
+    font-size: 1.5em;
+}
