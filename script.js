@@ -8,17 +8,17 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function() {
-        if (read)
-            return `The ${this.title} by ${this.author}, ${this.pages} pages, this book is read`
-        else
-            return `The ${this.title} by ${this.author}, ${this.pages} pages, this book is not read`;
-    }
 
 }
-
 Book.prototype.toggleReadStatus = function() {
     this.read = !this.read;
+    console.log(this.read);
+}
+Book.prototype.info = function() {
+    if (this.read)
+        return `The ${this.title} by ${this.author}, ${this.pages} pages, this book is read`
+    else
+        return `The ${this.title} by ${this.author}, ${this.pages} pages, this book is not read`;
 }
 
 function addBookToLibrary(book) {
@@ -48,8 +48,9 @@ function displayBooks() {
         });
 
         readStatus.addEventListener('click', () =>{
-            book.toggleReadStatus();
-            display()
+            myLibrary[i].toggleReadStatus();
+            console.log(myLibrary[i].info(), i);
+            displayBooks();
         })
     }
 }
@@ -73,6 +74,6 @@ submit.addEventListener('submit', (event) => {
     const author = document.getElementById('author');
     const pages = document.getElementById('pages');
     const read = document.getElementById('read');
-    addBookToLibrary(new Book(title.value, author.value, pages.value, read.checked));
+    myLibrary.push(new Book(title.value, author.value, pages.value, read.checked));
     displayBooks();
 });
